@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Visiteur" as Visitor
+actor "Recruteur" as Recruiter
+Recruiter <|-- Visitor
+
+rectangle "Portfolio Laravel" {
+  usecase "Consulter\nAccueil" as UC_Home
+  usecase "Consulter\nÀ propos" as UC_About
+  usecase "Consulter\nProjets" as UC_Projects
+  usecase "Voir détails\nProjet" as UC_ProjectDetails
+  usecase "Envoyer\nMessage (Contact)" as UC_Contact
+}
+
+Visitor -- UC_Home
+Visitor -- UC_About
+Visitor -- UC_Projects
+Visitor -- UC_ProjectDetails
+Visitor -- UC_Contact
+
+' Optionnel : relations de dépendance/extension
+UC_ProjectDetails .> UC_Projects : <>
+@enduml
