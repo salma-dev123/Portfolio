@@ -48,27 +48,27 @@ Créer un mini-site pour exposer ses compétences et ses projets
 
 ## Analyse: Example de l'exsistant
 
-![Site inspirant](imgs/image1.png)
+![Site inspirant](images/image1.png)
 
 ---
 
 ## Analyse: Diagramme de cas d'utilisation
-![Diagramme de cas d'utilisation](imgs/image2.png)
+![Diagramme de cas d'utilisation](images/image2.png)
 
 ---
 
 ## Conception: Schema
 
-![Schema](imgs/image3.png)
+![Schema](images/image3.png)
 
 ---
 
 ## Conception: Diagramme de classe
 
-![Diagramme de classe](imgs/image4.png)
+![Diagramme de classe](images/image4.png)
 
 ---
 
 ## Conception: Maquette
 
-![Maquette](imgs/image5.png)
+![Maquette](images/image5.png)
