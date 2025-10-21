@@ -11,15 +11,14 @@ rectangle "Portfolio Laravel" {
   usecase "Consulter\nÀ propos" as UC_About
   usecase "Consulter\nProjets" as UC_Projects
   usecase "Voir détails\nProjet" as UC_ProjectDetails
-  usecase "Envoyer\nMessage (Contact)" as UC_Contact
 }
 
 Visitor -- UC_Home
 Visitor -- UC_About
 Visitor -- UC_Projects
 Visitor -- UC_ProjectDetails
-Visitor -- UC_Contact
 
-' Optionnel : relations de dépendance/extension
+' Optionnel : relation logique
 UC_ProjectDetails .> UC_Projects : <>
+
 @enduml
