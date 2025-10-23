@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salma Akajou - Site de Gestion de Zoo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #F3CCDE 0%, #fff 50%, #F3CCDE 100%);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(158, 104, 153, 0.4);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #9E6899 0%, #5B3765 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5B3765 0%, #9E6899 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(91, 55, 101, 0.4);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #9E6899, #5B3765);
+            border-radius: 2px;
+        }
+        
+        /* Stickers et éléments décoratifs */
+        .decorative-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .arrow-doodle {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .star-doodle {
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .circle-blob {
+            animation: blob 4s ease-in-out infinite;
+        }
+        
+        @keyframes blob {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        
+        .cursive-text {
+            font-family: 'Brush Script MT', cursive;
+            font-style: italic;
+        }
+        
+        /* Animation CSS pour les sections (au chargement avec delay) */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-up.delay-1 {
+            transition-delay: 0.2s;
+        }
+
+        .fade-in-up.delay-2 {
+            transition-delay: 0.4s;
+        }
+
+        .fade-in-up.delay-3 {
+            transition-delay: 0.6s;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation descendante pour la Hero Section (au chargement) */
+        .fade-in-down {
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Appliquer l'animation au chargement via la classe visible */
+        @media (prefers-reduced-motion: no-preference) {
+            .fade-in-up,
+            .fade-in-down {
+                opacity: 1;
+            }
+            .fade-in-up {
+                transform: translateY(0);
+            }
+            .fade-in-down {
+                animation: fadeInDown 1s ease-out forwards;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold">
+                    <span style="color: #9E6899;">Salma</span>
+                    <span class="text-gray-800"> Akajou</span>
+                </div>
+                
+                <!-- Menu Navigation -->
+                <ul class="hidden md:flex space-x-8 text-gray-700 font-medium">
+                    <li><a href="index.html" class="hover:text-purple-600 transition">Accueil</a></li>
+                    <li><a href="about.html" class="hover:text-purple-600 transition">À propos</a></li>
+                    <li><a href="projects.html" class="transition" style="color: #9E6899;">Projets</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Icon -->
+                <div class="md:hidden">
+                    <i class="fas fa-bars text-2xl text-gray-700"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg pt-32 pb-20 px-6 relative overflow-hidden hero-content">
+        <!-- Éléments décoratifs -->
+        <div class="decorative-element top-20 left-10 arrow-doodle hidden lg:block">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <path d="M10 50 Q 30 30, 50 50 T 90 50" stroke="#BA88AE" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M85 45 L 90 50 L 85 55" stroke="#BA88AE" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+        
+        <div class="decorative-element top-40 right-20 star-doodle hidden lg:block">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+                <path d="M30 5 L35 25 L55 30 L35 35 L30 55 L25 35 L5 30 L25 25 Z" fill="#D6A8C4" opacity="0.6"/>
+            </svg>
+        </div>
+        
+        <div class="decorative-element bottom-20 left-1/4 hidden lg:block">
+            <div class="w-20 h-20 rounded-full circle-blob" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4); opacity: 0.4;"></div>
+        </div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6 fade-in-down">Site de Gestion de Zoo</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed fade-in-down">
+                Découvrez les détails de mon projet de gestion de zoo, une application web intuitive conçue pour optimiser la gestion des animaux et des visiteurs.
+            </p>
+        </div>
+        
+        <!-- Texte cursif décoratif -->
+        <div class="absolute bottom-10 right-10 cursive-text text-4xl hidden lg:block" style="color: #BA88AE; opacity: 0.3; transform: rotate(-5deg);">
+            Zoo Management
+        </div>
+    </section>
+
+    <!-- Section Image -->
+    <section class="py-20 px-6 bg-white relative overflow-hidden">
+        <div class="decorative-element top-10 right-10 hidden lg:block">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="30" fill="none" stroke="#F3CCDE" stroke-width="3" stroke-dasharray="5,5"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 section-title">Aperçu Visuel</h2>
+            <div class="w-full max-w-4xl mx-auto overflow-hidden rounded-xl shadow-xl hover-lift fade-in-up delay-1 visible">
+                <img src="imgs/zoo.png" alt="Site de Gestion de Zoo" class="w-full h-auto object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Description -->
+    <section class="py-20 px-6 bg-gray-50 relative overflow-hidden">
+        <div class="decorative-element bottom-20 left-10 arrow-doodle hidden lg:block">
+            <svg width="120" height="60" viewBox="0 0 120 60">
+                <path d="M10 30 Q 40 10, 70 30 Q 100 50, 110 30" stroke="#D6A8C4" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 section-title">Description</h2>
+            <p class="text-gray-600 leading-relaxed max-w-3xl mx-auto fade-in-up delay-2 visible">
+                Ce projet est une application web conçue pour faciliter la gestion d’un zoo. Elle permet de suivre la gestion des animaux, de gérer les visiteurs, et d’optimiser les ressources quotidiennes. L’interface utilisateur est intuitive, avec des tableaux de bord personnalisables et des rapports détaillés. Ce projet a été développé avec une approche centrée sur l’utilisateur, garantissant une expérience fluide et efficace.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section Dates -->
+    <section class="py-20 px-6 bg-white relative overflow-hidden">
+        <div class="decorative-element top-20 left-1/3 star-doodle hidden lg:block">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+                <polygon points="25,5 30,20 45,20 33,28 38,43 25,35 12,43 17,28 5,20 20,20" fill="#9E6899" opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 section-title">Dates du Projet</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md hover-lift fade-in-up delay-3 visible">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Date de Début</h3>
+                    <p class="text-gray-600">12 janvier 2025</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover-lift fade-in-up delay-3 visible">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Date de Fin</h3>
+                    <p class="text-gray-600">25 janvier 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Technologies -->
+    <section class="py-20 px-6 gradient-bg relative overflow-hidden">
+        <div class="decorative-element bottom-10 right-1/4 circle-blob hidden lg:block">
+            <div class="w-16 h-16 rounded-full" style="background: linear-gradient(135deg, #BA88AE, #9E6899); opacity: 0.3;"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 section-title">Technologies Utilisées</h2>
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md hover-lift fade-in-up delay-1 visible">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2 flex items-center justify-center"><i class="fab fa-html5 text-orange-600 mr-2"></i>HTML/CSS</h3>
+                    <p class="text-gray-600">Structure et style de l’interface.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover-lift fade-in-up delay-2 visible">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2 flex items-center justify-center"><i class="fab fa-react text-blue-500 mr-2"></i>ReactJS</h3>
+                    <p class="text-gray-600">Fonctionnalités interactives et composants réutilisables.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover-lift fade-in-up delay-3 visible">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2 flex items-center justify-center"><i class="fab fa-node-js text-green-600 mr-2"></i>Node.js</h3>
+                    <p class="text-gray-600">Gestion backend et API.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="py-20 px-6 bg-white relative overflow-hidden">
+        <div class="decorative-element top-20 left-1/4 star-doodle hidden lg:block">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+                <polygon points="25,5 30,20 45,20 33,28 38,43 25,35 12,43 17,28 5,20 20,20" fill="#9E6899" opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <div class="decorative-element bottom-10 right-20 hidden lg:block">
+            <div class="w-16 h-16 rounded-lg circle-blob" style="background: linear-gradient(135deg, #BA88AE, #9E6899); opacity: 0.3;"></div>
+        </div>
+        
+        <div class="cursive-text text-4xl absolute top-10 left-20 hidden lg:block" style="color: #5B3765; opacity: 0.2; transform: rotate(-8deg);">
+            Let's Connect
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title">
+                    Vous avez un projet en tête ?
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                     N'hésitez pas à me contacter, je serai ravie d'échanger avec vous.
+                </p>
+            </div>
+            
+            <!-- Cartes de contact -->
+            <div class="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Localisation -->
+                <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                            <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 mb-2 text-lg">Localisation</h3>
+                            <p class="text-gray-700">Rue Belair n° 10<br>Tanger, Maroc</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email -->
+                <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 mb-2 text-lg">Email</h3>
+                            <p class="text-gray-700">salmaakajou1@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- GitHub -->
+                <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                            <i class="fab fa-github text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 mb-2 text-lg">GitHub</h3>
+                            <p class="text-gray-700">salma-dev123</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LinkedIn -->
+                <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                            <i class="fab fa-linkedin text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 mb-2 text-lg">LinkedIn</h3>
+                            <p class="text-gray-700">salma-akajou</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bouton Retour -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="projects.html" class="btn-primary text-white font-semibold py-3 px-6 rounded-full hover-lift">Retour aux projets</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Colonne 1 -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span style="color: #BA88AE;">Salma</span> Akajou
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Développeuse Full Stack passionnée par la création d'expériences web exceptionnelles.
+                    </p>
+                </div>
+                
+                <!-- Colonne 2 -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-purple-400 transition">Accueil</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-purple-400 transition">À propos</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-purple-400 transition" style="color: #BA88AE;">Projets</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Colonne 3 -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Réseaux sociaux</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>© 2025 Salma Akajou - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

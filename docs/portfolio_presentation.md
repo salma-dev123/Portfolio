@@ -33,7 +33,7 @@ Créer un mini-site pour exposer ses compétences et ses projets
 - **Pages minimales**: -Accueil                                                                                     
 -Projets                                                                                    
 -Détail projet                                                                              
-- À propos / Contact  
+- À propos 
 - **Technologies**: 
 - Laravel                                                 
 - blades (views)       

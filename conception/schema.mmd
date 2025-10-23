@@ -1,0 +1,15 @@
+graph TD
+    Navbar --> Accueil;
+    Navbar --> APropos[À propos];
+    Navbar --> Projets;
+
+    Accueil --> SectionAccueil[Section d'accueil];
+    SectionAccueil --> PresentationProfil[Présentation du profil];
+
+    APropos --> SectionAPropos[Section à propos];
+    SectionAPropos --> BiographieExperience[Biographie / parcours / Expérience / competences ];
+    
+
+    Projets --> PageProjets[Page projets];
+    PageProjets --> ListeProjets[Liste des projets];
+    ListeProjets --> DetailsProjet[Détails du projet sélectionné];

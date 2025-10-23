@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salma Akajou - Développeuse Web Full Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #F3CCDE 0%, #fff 50%, #F3CCDE 100%);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(158, 104, 153, 0.3);
+        }
+        
+        .progress-bar {
+            transition: width 1.5s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #9E6899 0%, #5B3765 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5B3765 0%, #9E6899 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(91, 55, 101, 0.4);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #9E6899, #5B3765);
+            border-radius: 2px;
+        }
+        
+        /* Stickers et éléments décoratifs */
+        .decorative-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .arrow-doodle {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .star-doodle {
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .circle-blob {
+            animation: blob 4s ease-in-out infinite;
+        }
+        
+        @keyframes blob {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        
+        /* Cursive text style */
+        .cursive-text {
+            font-family: 'Brush Script MT', cursive;
+            font-style: italic;
+        }
+        
+        /* Animations pour le Hero Section */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slide-down {
+            animation: slideDown 0.8s ease-out forwards;
+        }
+        
+        .hero-title {
+            opacity: 0;
+            animation: slideDown 0.8s ease-out 0.2s forwards;
+        }
+        
+        .hero-subtitle {
+            opacity: 0;
+            animation: slideDown 0.8s ease-out 0.4s forwards;
+        }
+        
+        .hero-description {
+            opacity: 0;
+            animation: slideDown 0.8s ease-out 0.6s forwards;
+        }
+        
+        .hero-buttons {
+            opacity: 0;
+            animation: slideDown 0.8s ease-out 0.8s forwards;
+        }
+        
+        /* Style pour les cartes de projets */
+        .project-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #F3CCDE;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(158, 104, 153, 0.4);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #D6A8C4;
+        }
+        
+        .project-card-content {
+            padding: 1.5rem;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .project-card-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #5B3769;
+        }
+        
+        .project-card-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .see-more-btn {
+            background: linear-gradient(135deg, #9E6899 0%, #5B3765 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .see-more-btn:hover {
+            background: linear-gradient(135deg, #5B3765 0%, #9E6899 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(91, 55, 101, 0.4);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactButton = document.querySelector('a[href="#contact-section"]');
+            if (contactButton) {
+                contactButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</head>
+<body class="bg-white">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold">
+                    <span class="text-purple-600" style="color: #9E6899;">Salma</span>
+                    <span class="text-gray-800"> Akajou</span>
+                </div>
+                
+                <!-- Menu Navigation -->
+                <ul class="hidden md:flex space-x-8 text-gray-700 font-medium">
+                    <li><a href="index.html" class="hover:text-purple-600 transition" style="color: #9E6899;">Accueil</a></li>
+                    <li><a href="about.html" class="hover:text-purple-600 transition">À propos</a></li>
+                    <li><a href="projects.html" class="hover:text-purple-600 transition">Projets</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Icon -->
+                <div class="md:hidden">
+                    <i class="fas fa-bars text-2xl text-gray-700"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section avec animations -->
+    <section class="gradient-bg pt-32 pb-20 px-6 relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="decorative-element top-20 left-10 arrow-doodle hidden lg:block">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <path d="M10 50 Q 30 30, 50 50 T 90 50" stroke="#BA88AE" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M85 45 L 90 50 L 85 55" stroke="#BA88AE" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+        
+        <div class="decorative-element top-40 right-20 star-doodle hidden lg:block">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+                <path d="M30 5 L35 25 L55 30 L35 35 L30 55 L25 35 L5 30 L25 25 Z" fill="#D6A8C4" opacity="0.6"/>
+            </svg>
+        </div>
+        
+        <div class="decorative-element bottom-20 left-1/4 hidden lg:block">
+            <div class="w-20 h-20 rounded-full circle-blob" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4); opacity: 0.4;"></div>
+        </div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Photo de profil -->
+            <div class="mb-8 flex justify-center relative animate-slide-down">
+                <div class="w-48 h-48 rounded-full p-1 shadow-lg" style="background: linear-gradient(135deg, #D6A8C4, #BA88AE);">
+                    <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                        <img src="imgs/photo_profile1.png" alt="Salma Akajou">
+                    </div>
+                </div>
+                
+                <!-- Sticker décoratif -->
+                <div class="absolute -right-8 top-0 star-doodle">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="15" fill="#BA88AE" opacity="0.7"/>
+                        <text x="20" y="26" text-anchor="middle" fill="white" font-size="20">✨</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Titre avec animation -->
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-4 hero-title">
+                Salma Akajou
+            </h1>
+            
+            <!-- Sous-titre avec animation -->
+            <p class="text-2xl md:text-3xl font-semibold mb-6 hero-subtitle" style="color: #9E6899;">
+                Développeuse Web Full Stack
+            </p>
+            
+            <!-- Description avec animation -->
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed hero-description">
+                Passionnée par la programmation et la conception d'interfaces intuitives et modernes. 
+                Je transforme vos idées en expériences web exceptionnelles.
+            </p>
+            
+            <!-- Boutons CTA avec animation -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center hero-buttons">
+                <a href="projects.html" class="btn-primary text-white px-8 py-4 rounded-full font-semibold shadow-lg inline-block">
+                    <i class="fas fa-folder-open mr-2"></i>
+                    Voir mes projets
+                </a>
+                <a href="#contact-section" class="bg-white text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition border-2 inline-block" style="color: #9E6899; border-color: #9E6899; background: #F3CCDE;">
+                    <i class="fas fa-user mr-2"></i>
+                    Contacter
+                </a>
+            </div>
+        </div>
+        
+        <!-- Texte cursif décoratif -->
+        <div class="absolute bottom-10 right-10 cursive-text text-4xl hidden lg:block" style="color: #BA88AE; opacity: 0.3; transform: rotate(-5deg);">
+            Let's create together
+        </div>
+    </section>
+
+    <!-- Section À Propos -->
+    <section class="py-20 px-6 bg-white relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="decorative-element top-10 right-10 hidden lg:block">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="30" fill="none" stroke="#F3CCDE" stroke-width="3" stroke-dasharray="5,5"/>
+            </svg>
+        </div>
+        
+        <div class="decorative-element bottom-20 left-10 arrow-doodle hidden lg:block">
+            <svg width="120" height="60" viewBox="0 0 120 60">
+                <path d="M10 30 Q 40 10, 70 30 Q 100 50, 110 30" stroke="#D6A8C4" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Texte -->
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title">
+                        À propos de moi
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed mb-6 text-lg">
+                        Développeuse web Full Stack motivée par la création d'applications performantes et bien structurées. 
+                        J'accorde une grande importance à la qualité du code, au design et à l'expérience utilisateur.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8 text-lg">
+                         Passionnée par l'apprentissage continu, j'aime relever de nouveaux défis,
+                        explorer des technologies récentes et donner vie à des projets à la fois utiles et créatifs.
+                    </p>
+                    <a href="about.html" class="btn-primary text-white px-6 py-3 rounded-full font-semibold inline-block">
+                        <i class="fas fa-arrow-right mr-2"></i>
+                        En savoir plus
+                    </a>
+                </div>
+                
+                <!-- Photo -->
+                <div class="flex justify-center relative">
+                    <div class="w-80 h-80 rounded-3xl p-2 shadow-xl hover-lift" style="background: linear-gradient(135deg, #D6A8C4, #BA88AE);">
+                        <div class="w-full h-full rounded-3xl bg-gray-200 flex items-center justify-center overflow-hidden">
+                            <img src="imgs/photo_profile1.png" alt="Salma Akajou">
+                        </div>
+                    </div>
+                    
+                    <!-- Sticker heart -->
+                    <div class="absolute -bottom-4 -right-4 star-doodle">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                            💜
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Mes Projets Réalisés -->
+    <section class="py-20 px-6 gradient-bg relative overflow-hidden">
+        <!-- Stickers décoratifs -->
+        <div class="decorative-element top-20 left-1/4 star-doodle hidden lg:block">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+                <polygon points="25,5 30,20 45,20 33,28 38,43 25,35 12,43 17,28 5,20 20,20" fill="#9E6899" opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <div class="decorative-element bottom-32 right-1/3 hidden lg:block">
+            <div class="w-16 h-16 rounded-lg circle-blob" style="background: linear-gradient(135deg, #BA88AE, #9E6899); opacity: 0.3;"></div>
+        </div>
+        
+        <div class="cursive-text text-3xl absolute top-10 right-20 hidden lg:block" style="color: #5B3765; opacity: 0.2; transform: rotate(8deg);">
+            My Projects
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title">
+                    Mes Projets Réalisés
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Découvrez une sélection de mes projets qui reflètent ma créativité et mes compétences.
+                </p>
+            </div>
+            
+            <!-- Grille de projets -->
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <div class="project-card hover-lift">
+                    <img src="imgs/zoo.png" alt="Projet Gestion de Zoo">
+                    <div class="project-card-content">
+                        <h3>Site web de gestion de zoo</h3>
+                        <p>Projet web complet de gestion de zoo, combinant affichage, organisation et découverte des animaux et activités.</p>
+                    </div>
+                </div>
+
+                <div class="project-card hover-lift">
+                    <img src="imgs/recette.png" alt="Projet Recettes de cuisine">
+                    <div class="project-card-content">
+                        <h3>Plateforme des recettes de cuisine</h3>
+                        <p>Application web de recettes affichant les ingrédients, étapes et photos dans un design moderne.</p>
+                    </div>
+                </div>
+
+                <div class="project-card hover-lift">
+                    <img src="imgs/elections.png" alt="Projet Gestion des élections">
+                    <div class="project-card-content">
+                        <h3>Site web de Gestion des élections</h3>
+                        <p>Site web de gestion des élections simulant tout le processus électoral, de l'inscription des électeurs au dépouillement des votes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton Voir plus -->
+            <div class="text-center mt-12">
+                <a href="projects.html" class="see-more-btn inline-block">
+                    <i class="fas fa-arrow-right mr-2"></i>
+                    Voir plus
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact-section" class="py-20 px-6 bg-white relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="decorative-element top-10 left-10 arrow-doodle hidden lg:block">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <path d="M20 80 Q 40 20, 80 50" stroke="#BA88AE" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <circle cx="80" cy="50" r="5" fill="#BA88AE"/>
+            </svg>
+        </div>
+        
+        <div class="cursive-text text-4xl absolute bottom-20 left-20 hidden lg:block" style="color: #D6A8C4; opacity: 0.2; transform: rotate(-10deg);">
+            Get in touch
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title">
+                    Contactez-moi
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Une question ? Un projet ? N'hésitez pas à me contacter, je serai ravie d'échanger avec vous.
+                </p>
+            </div>
+            
+            <!-- Informations de contact centrées -->
+            <div class="max-w-2xl mx-auto">
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                        <div class="flex flex-col items-center text-center space-y-4">
+                            <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                                <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2 text-lg">Localisation</h3>
+                                <p class="text-gray-700">Rue Belair n° 10<br>Tanger, Maroc</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                        <div class="flex flex-col items-center text-center space-y-4">
+                            <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                                <i class="fab fa-linkedin text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2 text-lg">LinkedIn</h3>
+                                <p class="text-gray-700">salma-akajou</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                        <div class="flex flex-col items-center text-center space-y-4">
+                            <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                                <i class="fas fa-envelope text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2 text-lg">Email</h3>
+                                <p class="text-gray-700">salmaakajou1@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-2xl p-8 hover-lift" style="background: linear-gradient(135deg, #F3CCDE, #D6A8C4);">
+                        <div class="flex flex-col items-center text-center space-y-4">
+                            <div class="w-16 h-16 rounded-lg flex items-center justify-center" style="background: #9E6899;">
+                                <i class="fab fa-github text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2 text-lg">GitHub</h3>
+                                <p class="text-gray-700">salma-dev123</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Colonne 1 -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span style="color: #BA88AE;">Salma</span> Akajou
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Développeuse Full Stack passionnée par la création d'expériences web exceptionnelles.
+                    </p>
+                </div>
+                
+                <!-- Colonne 2 -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 transition" style="color: #BA88AE;">Accueil</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-purple-400 transition">À propos</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-purple-400 transition">Projets</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Colonne 3 -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Réseaux sociaux</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>© 2025 Salma Akajou - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

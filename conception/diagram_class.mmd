@@ -1,0 +1,32 @@
+classDiagram
+    direction LR
+
+    class Developer {
+        +string nom
+        +string prenom
+        +string role
+        +string bio
+        +string email
+        +string numeroTelephone
+        +string localisation
+        +string photoProfile
+    }
+
+    class Projet {
+        +int id
+        +string titre
+        +string description
+        +string image
+        +string dateDebut
+        +string dateFin
+        +string technologies
+    }
+
+    class Technologie {
+        +int id
+        +string nom
+    }
+
+    %% Relations
+    Developer "1" --> "*" Projet : crée
+    Projet "1" --> "*" Technologie : utilise
