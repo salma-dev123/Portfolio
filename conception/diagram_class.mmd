@@ -10,6 +10,8 @@ classDiagram
         +string numeroTelephone
         +string localisation
         +string photoProfile
+        +string github
+        +string linkedin
     }
 
     class Projet {
@@ -29,4 +31,5 @@ classDiagram
 
     %% Relations
     Developer "1" --> "*" Projet : crée
+    Developer "1" --> "*" Technologie : maitrise
     Projet "1" --> "*" Technologie : utilise
