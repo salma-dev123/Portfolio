@@ -38,10 +38,8 @@ class PortfolioController extends Controller
     public function project(int $id)
     {
         $project = $this->projectService->find($id);
-        abort_if(!$project, 404);
         $profile = $this->developerService->getProfile();
-        $technologies = $this->technologieService->all();
-        return view('projects.show', compact('project', 'profile', 'technologies'));
+        return view('projects.show', compact('project', 'profile'));
     }
 }
 

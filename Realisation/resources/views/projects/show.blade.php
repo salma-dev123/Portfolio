@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 @endpush
 
-<!-- Hero Section -->
 <section class="gradient-bg pt-32 pb-20 px-6 relative overflow-hidden hero-content">
     <div class="decorative-element top-20 left-10 arrow-doodle hidden lg:block">
         <svg width="100" height="100" viewBox="0 0 100 100">
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 </section>
 
-<!-- Section Image -->
 <section class="py-20 px-6 bg-white relative overflow-hidden">
     <div class="decorative-element top-10 right-10 hidden lg:block">
         <svg width="80" height="80" viewBox="0 0 80 80">
@@ -71,7 +69,6 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 </section>
 
-<!-- Section Description -->
 <section class="py-20 px-6 bg-gray-50 relative overflow-hidden">
     <div class="decorative-element bottom-20 left-10 arrow-doodle hidden lg:block">
         <svg width="120" height="60" viewBox="0 0 120 60">
@@ -86,7 +83,6 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 </section>
 
-<!-- Section Dates -->
 <section class="py-20 px-6 bg-white relative overflow-hidden">
     <div class="decorative-element top-20 left-1/3 star-doodle hidden lg:block">
         <svg width="50" height="50" viewBox="0 0 50 50">
@@ -108,7 +104,6 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 </section>
 
-<!-- Section Technologies -->
 <section class="py-20 px-6 gradient-bg relative overflow-hidden">
     <div class="decorative-element bottom-10 right-1/4 circle-blob hidden lg:block">
         <div class="w-16 h-16 rounded-full" style="background: linear-gradient(135deg, #BA88AE, #9E6899); opacity: 0.3;"></div>
@@ -159,7 +154,6 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 </section>
 
-<!-- Section Contact -->
 <section class="py-20 px-6 bg-white relative overflow-hidden">
     <div class="decorative-element top-20 left-1/4 star-doodle hidden lg:block">
         <svg width="50" height="50" viewBox="0 0 50 50">
@@ -204,7 +198,6 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 </section>
 
-<!-- Bouton Retour -->
 <div class="fixed bottom-6 right-6 z-50">
     <a href="{{ route('projects.index') }}" class="btn-primary text-white font-semibold py-3 px-6 rounded-full hover-lift">Retour aux projets</a>
 </div>
