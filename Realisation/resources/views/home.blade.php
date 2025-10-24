@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 @endpush
 <section class="gradient-bg pt-32 pb-20 px-6 relative overflow-hidden">
-    <!-- Éléments décoratifs -->
     <div class="decorative-element top-20 left-10 arrow-doodle hidden lg:block">
         <svg width="100" height="100" viewBox="0 0 100 100">
             <path d="M10 50 Q 30 30, 50 50 T 90 50" stroke="#BA88AE" stroke-width="3" fill="none" stroke-linecap="round"/>
